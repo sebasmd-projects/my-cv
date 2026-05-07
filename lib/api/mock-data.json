@@ -346,7 +346,7 @@
     {
       "id": "1",
       "email": "sebastian@sebasmoralesd.com",
-      "password": "$2a$10$hashedpassword123",
+      "password": "juan1999@",
       "name": "Sebastian Morales",
       "role": "admin"
     },
