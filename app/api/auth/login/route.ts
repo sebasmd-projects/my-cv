@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server"
 import { cookies } from "next/headers"
-import { SignJWT, jwtVerify } from "jose"
+import * as jose from "jose"
+
+const { SignJWT } = jose
 
 // In production, these would be in a database with hashed passwords
 const mockUsers = [

@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server"
 import { cookies } from "next/headers"
-import { jwtVerify } from "jose"
+import * as jose from "jose"
+
+const { jwtVerify } = jose
 
 const JWT_SECRET = new TextEncoder().encode(
   process.env.JWT_SECRET || "portfolio-secret-key-change-in-production-32chars"

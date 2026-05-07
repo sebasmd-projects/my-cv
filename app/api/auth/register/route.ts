@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server"
 import { cookies } from "next/headers"
-import { SignJWT } from "jose"
+import * as jose from "jose"
+
+const { SignJWT } = jose
 
 // In production, this would be a database
 const registeredUsers: Array<{
