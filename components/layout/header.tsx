@@ -3,20 +3,26 @@
 import { useState, useEffect } from "react"
 import Link from "next/link"
 import { motion, AnimatePresence } from "framer-motion"
-import { Menu, X, FileDown, Github, Linkedin, Mail } from "lucide-react"
+import { Menu, X, Github, Linkedin, Mail, User, LogIn, Globe, FileDown } from "lucide-react"
 import { ThemeToggle } from "@/components/theme-toggle"
+import { useI18n } from "@/lib/i18n/context"
+import { useAuth } from "@/lib/auth/context"
+import { profileService } from "@/lib/api/profile-service"
 import { cn } from "@/lib/utils"
 
-const navItems = [
-  { label: "Sobre Mi", href: "#about" },
-  { label: "Habilidades", href: "#skills" },
-  { label: "Experiencia", href: "#experience" },
-  { label: "Contacto", href: "#contact" },
-]
-
 export function Header() {
+  const { t, locale, setLocale } = useI18n()
+  const { user } = useAuth()
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [profile, setProfile] = useState<{ githubUrl: string; linkedinUrl: string } | null>(null)
+
+  const navItems = [
+    { label: t("nav.about"), href: "#about" },
+    { label: t("nav.skills"), href: "#skills" },
+    { label: t("nav.experience"), href: "#experience" },
+    { label: t("nav.contact"), href: "#contact" },
+  ]
 
   useEffect(() => {
     const handleScroll = () => {
@@ -25,6 +31,18 @@ export function Header() {
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
+
+  useEffect(() => {
+    const loadProfile = async () => {
+      const data = await profileService.getProfile()
+      setProfile({ githubUrl: data.githubUrl, linkedinUrl: data.linkedinUrl })
+    }
+    loadProfile()
+  }, [])
+
+  const toggleLocale = () => {
+    setLocale(locale === "es" ? "en" : "es")
+  }
 
   return (
     <header
@@ -55,32 +73,67 @@ export function Header() {
             ))}
           </nav>
 
-          <div className="hidden lg:flex items-center gap-4">
-            <Link
-              href="https://github.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-2 text-muted-foreground hover:text-primary transition-colors"
-              aria-label="GitHub"
+          <div className="hidden lg:flex items-center gap-3">
+            {profile && (
+              <>
+                <Link
+                  href={profile.githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2 text-muted-foreground hover:text-primary transition-colors"
+                  aria-label="GitHub"
+                >
+                  <Github className="w-5 h-5" />
+                </Link>
+                <Link
+                  href={profile.linkedinUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2 text-muted-foreground hover:text-primary transition-colors"
+                  aria-label="LinkedIn"
+                >
+                  <Linkedin className="w-5 h-5" />
+                </Link>
+              </>
+            )}
+            
+            {/* Language Toggle */}
+            <button
+              onClick={toggleLocale}
+              className="flex items-center gap-1.5 px-2 py-1.5 text-sm text-muted-foreground hover:text-primary transition-colors rounded-lg hover:bg-secondary"
+              aria-label="Toggle language"
             >
-              <Github className="w-5 h-5" />
-            </Link>
-            <Link
-              href="https://linkedin.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-2 text-muted-foreground hover:text-primary transition-colors"
-              aria-label="LinkedIn"
-            >
-              <Linkedin className="w-5 h-5" />
-            </Link>
+              <Globe className="w-4 h-4" />
+              <span className="uppercase font-medium">{locale}</span>
+            </button>
+
             <ThemeToggle />
+
+            {/* Auth Button */}
+            {user ? (
+              <Link
+                href="/dashboard"
+                className="flex items-center gap-2 px-3 py-2 text-sm text-muted-foreground hover:text-primary transition-colors rounded-lg hover:bg-secondary"
+              >
+                <User className="w-4 h-4" />
+                {t("nav.dashboard")}
+              </Link>
+            ) : (
+              <Link
+                href="/login"
+                className="flex items-center gap-2 px-3 py-2 text-sm text-muted-foreground hover:text-primary transition-colors rounded-lg hover:bg-secondary"
+              >
+                <LogIn className="w-4 h-4" />
+                {t("nav.login")}
+              </Link>
+            )}
+
             <Link
               href="#contact"
               className="flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-lg font-medium text-sm hover:bg-primary/90 transition-colors"
             >
               <Mail className="w-4 h-4" />
-              Contactar
+              {t("hero.contact")}
             </Link>
           </div>
 
@@ -113,23 +166,56 @@ export function Header() {
                   {item.label}
                 </Link>
               ))}
+              
+              {/* Auth Link Mobile */}
+              {user ? (
+                <Link
+                  href="/dashboard"
+                  className="flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-primary transition-colors py-2"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  <User className="w-4 h-4" />
+                  {t("nav.dashboard")}
+                </Link>
+              ) : (
+                <Link
+                  href="/login"
+                  className="flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-primary transition-colors py-2"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  <LogIn className="w-4 h-4" />
+                  {t("nav.login")}
+                </Link>
+              )}
+
               <div className="flex items-center gap-4 pt-4 border-t border-border">
-                <Link
-                  href="https://github.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-2 text-muted-foreground hover:text-primary transition-colors"
+                {profile && (
+                  <>
+                    <Link
+                      href={profile.githubUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-2 text-muted-foreground hover:text-primary transition-colors"
+                    >
+                      <Github className="w-5 h-5" />
+                    </Link>
+                    <Link
+                      href={profile.linkedinUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-2 text-muted-foreground hover:text-primary transition-colors"
+                    >
+                      <Linkedin className="w-5 h-5" />
+                    </Link>
+                  </>
+                )}
+                <button
+                  onClick={toggleLocale}
+                  className="flex items-center gap-1.5 p-2 text-muted-foreground hover:text-primary transition-colors"
                 >
-                  <Github className="w-5 h-5" />
-                </Link>
-                <Link
-                  href="https://linkedin.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-2 text-muted-foreground hover:text-primary transition-colors"
-                >
-                  <Linkedin className="w-5 h-5" />
-                </Link>
+                  <Globe className="w-5 h-5" />
+                  <span className="uppercase text-sm font-medium">{locale}</span>
+                </button>
                 <ThemeToggle />
               </div>
             </nav>

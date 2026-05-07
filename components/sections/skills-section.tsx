@@ -1,17 +1,41 @@
 "use client"
 
+import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
-import { profileData } from "@/lib/profile-data"
+import { Loader2 } from "lucide-react"
+import { useI18n } from "@/lib/i18n/context"
+import { profileService, type Skill } from "@/lib/api/profile-service"
 import { cn } from "@/lib/utils"
 
-const categoryIcons: Record<string, string> = {
-  "QA & Testing": "Testing",
-  "Backend": "Backend",
-  "Frontend": "Frontend",
-  "DevOps & Tools": "DevOps",
+const categoryLabels: Record<string, Record<string, string>> = {
+  "QA & Testing": { es: "QA & Testing", en: "QA & Testing" },
+  "Backend": { es: "Backend", en: "Backend" },
+  "Frontend": { es: "Frontend", en: "Frontend" },
+  "DevOps & Tools": { es: "DevOps & Tools", en: "DevOps & Tools" },
 }
 
 export function SkillsSection() {
+  const { t, locale } = useI18n()
+  const [skillsByCategory, setSkillsByCategory] = useState<Record<string, Skill[]>>({})
+  const [isLoading, setIsLoading] = useState(true)
+
+  useEffect(() => {
+    const loadData = async () => {
+      const data = await profileService.getSkillsByCategory()
+      setSkillsByCategory(data)
+      setIsLoading(false)
+    }
+    loadData()
+  }, [])
+
+  if (isLoading) {
+    return (
+      <section id="skills" className="py-20 sm:py-32 flex items-center justify-center">
+        <Loader2 className="w-8 h-8 animate-spin text-primary" />
+      </section>
+    )
+  }
+
   return (
     <section id="skills" className="py-20 sm:py-32 scroll-mt-20">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -24,15 +48,15 @@ export function SkillsSection() {
             className="text-center mb-16"
           >
             <h2 className="text-sm font-mono text-primary uppercase tracking-wider mb-4">
-              Habilidades Tecnicas
+              {t("skills.title")}
             </h2>
             <h3 className="text-3xl sm:text-4xl font-bold text-foreground">
-              Stack Tecnologico
+              {t("skills.subtitle")}
             </h3>
           </motion.div>
 
           <div className="grid md:grid-cols-2 gap-8">
-            {Object.entries(profileData.skillsByCategory).map(([category, skills], categoryIndex) => (
+            {Object.entries(skillsByCategory).map(([category, skills], categoryIndex) => (
               <motion.div
                 key={category}
                 initial={{ opacity: 0, y: 20 }}
@@ -44,7 +68,7 @@ export function SkillsSection() {
                 <div className="flex items-center gap-3 mb-6">
                   <div className="px-3 py-1 bg-primary/10 rounded-lg">
                     <span className="text-sm font-mono text-primary">
-                      {categoryIcons[category] || category}
+                      {categoryLabels[category]?.[locale] || category}
                     </span>
                   </div>
                   <h4 className="font-semibold text-foreground">{category}</h4>
@@ -89,7 +113,9 @@ export function SkillsSection() {
             transition={{ duration: 0.5, delay: 0.4 }}
             className="mt-12 p-6 bg-card rounded-xl border border-border"
           >
-            <h4 className="font-semibold text-foreground mb-4">Otras Competencias</h4>
+            <h4 className="font-semibold text-foreground mb-4">
+              {locale === "es" ? "Otras Competencias" : "Other Skills"}
+            </h4>
             <div className="flex flex-wrap gap-2">
               {[
                 "Scrum", "Agile", "TDD", "BDD", "SOLID", "Clean Code", "Microservices",

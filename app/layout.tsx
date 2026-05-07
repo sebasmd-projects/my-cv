@@ -2,6 +2,8 @@ import type { Metadata } from 'next'
 import { Inter, JetBrains_Mono } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { ThemeProvider } from '@/components/theme-provider'
+import { I18nProvider } from '@/lib/i18n/context'
+import { AuthProvider } from '@/lib/auth/context'
 import './globals.css'
 
 const inter = Inter({ 
@@ -15,12 +17,12 @@ const jetbrainsMono = JetBrains_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'QA Analyst & Full Stack Developer | Python, Java, React',
+  title: 'Sebastian Morales | QA Analyst & Full Stack Developer',
   description: 'Analista de Calidad con mas de 7 anos de experiencia en desarrollo de software y QA. Especializado en automatizacion de pruebas, Python/Django, Java/Spring y React/Next.js.',
   keywords: 'QA Analyst, Full Stack Developer, Python, Django, Java, Spring, React, Next.js, Test Automation, Selenium, Karate, Robot Framework, CI/CD, DevOps',
-  authors: [{ name: 'QA Developer' }],
+  authors: [{ name: 'Sebastian Morales' }],
   openGraph: {
-    title: 'QA Analyst & Full Stack Developer',
+    title: 'Sebastian Morales | QA Analyst & Full Stack Developer',
     description: 'Senior QA Engineer con experiencia en automatizacion de pruebas y desarrollo full stack.',
     type: 'website',
   },
@@ -40,7 +42,11 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {children}
+          <AuthProvider>
+            <I18nProvider>
+              {children}
+            </I18nProvider>
+          </AuthProvider>
         </ThemeProvider>
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
