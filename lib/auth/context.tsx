@@ -1,6 +1,6 @@
 "use client"
 
-import { createContext, useContext, useState, useEffect, ReactNode } from "react"
+import { createContext, useContext, useState, useEffect, ReactNode, useCallback } from "react"
 
 export type UserRole = "admin" | "editor" | "viewer"
 
@@ -16,8 +16,9 @@ interface AuthContextType {
   isLoading: boolean
   login: (email: string, password: string) => Promise<{ success: boolean; error?: string }>
   register: (email: string, password: string, name: string) => Promise<{ success: boolean; error?: string }>
-  logout: () => void
+  logout: () => Promise<void>
   hasPermission: (permission: string) => boolean
+  refreshSession: () => Promise<void>
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined)
@@ -29,123 +30,96 @@ const rolePermissions: Record<UserRole, string[]> = {
   viewer: ["view_dashboard"]
 }
 
-// Simulated JWT functions
-function generateToken(user: User): string {
-  const payload = {
-    id: user.id,
-    email: user.email,
-    name: user.name,
-    role: user.role,
-    exp: Date.now() + 24 * 60 * 60 * 1000 // 24 hours
-  }
-  return btoa(JSON.stringify(payload))
-}
-
-function verifyToken(token: string): User | null {
-  try {
-    const payload = JSON.parse(atob(token))
-    if (payload.exp < Date.now()) {
-      return null
-    }
-    return {
-      id: payload.id,
-      email: payload.email,
-      name: payload.name,
-      role: payload.role
-    }
-  } catch {
-    return null
-  }
-}
-
-// Mock users database
-const mockUsers = [
-  {
-    id: "1",
-    email: "admin@portfolio.dev",
-    password: "admin123",
-    name: "Sebastian Morales",
-    role: "admin" as UserRole
-  },
-  {
-    id: "2",
-    email: "editor@portfolio.dev",
-    password: "editor123",
-    name: "Editor User",
-    role: "editor" as UserRole
-  }
-]
-
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null)
   const [isLoading, setIsLoading] = useState(true)
 
-  useEffect(() => {
-    const token = localStorage.getItem("portfolio-token")
-    if (token) {
-      const userData = verifyToken(token)
-      if (userData) {
-        setUser(userData)
+  const refreshSession = useCallback(async () => {
+    try {
+      const response = await fetch("/api/auth/session", {
+        method: "GET",
+        credentials: "include"
+      })
+      
+      if (response.ok) {
+        const data = await response.json()
+        setUser(data.user)
       } else {
-        localStorage.removeItem("portfolio-token")
+        setUser(null)
       }
+    } catch (error) {
+      console.error("Session refresh error:", error)
+      setUser(null)
+    } finally {
+      setIsLoading(false)
     }
-    setIsLoading(false)
   }, [])
 
+  useEffect(() => {
+    refreshSession()
+  }, [refreshSession])
+
   const login = async (email: string, password: string): Promise<{ success: boolean; error?: string }> => {
-    // Simulate API call delay
-    await new Promise(resolve => setTimeout(resolve, 500))
-    
-    const foundUser = mockUsers.find(u => u.email === email && u.password === password)
-    
-    if (!foundUser) {
-      return { success: false, error: "Credenciales invalidas" }
-    }
+    try {
+      const response = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        credentials: "include",
+        body: JSON.stringify({ email, password })
+      })
 
-    const userData: User = {
-      id: foundUser.id,
-      email: foundUser.email,
-      name: foundUser.name,
-      role: foundUser.role
-    }
+      const data = await response.json()
 
-    const token = generateToken(userData)
-    localStorage.setItem("portfolio-token", token)
-    setUser(userData)
-    
-    return { success: true }
+      if (!response.ok) {
+        return { success: false, error: data.error || "Error de autenticación" }
+      }
+
+      setUser(data.user)
+      return { success: true }
+    } catch (error) {
+      console.error("Login error:", error)
+      return { success: false, error: "Error de conexión" }
+    }
   }
 
   const register = async (email: string, password: string, name: string): Promise<{ success: boolean; error?: string }> => {
-    // Simulate API call delay
-    await new Promise(resolve => setTimeout(resolve, 500))
-    
-    const existingUser = mockUsers.find(u => u.email === email)
-    if (existingUser) {
-      return { success: false, error: "El email ya esta registrado" }
+    try {
+      const response = await fetch("/api/auth/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        credentials: "include",
+        body: JSON.stringify({ email, password, name })
+      })
+
+      const data = await response.json()
+
+      if (!response.ok) {
+        return { success: false, error: data.error || "Error de registro" }
+      }
+
+      setUser(data.user)
+      return { success: true }
+    } catch (error) {
+      console.error("Register error:", error)
+      return { success: false, error: "Error de conexión" }
     }
-
-    // In a real app, this would be saved to the database
-    const newUser: User = {
-      id: String(mockUsers.length + 1),
-      email,
-      name,
-      role: "viewer"
-    }
-
-    mockUsers.push({ ...newUser, password })
-
-    const token = generateToken(newUser)
-    localStorage.setItem("portfolio-token", token)
-    setUser(newUser)
-    
-    return { success: true }
   }
 
-  const logout = () => {
-    localStorage.removeItem("portfolio-token")
-    setUser(null)
+  const logout = async () => {
+    try {
+      await fetch("/api/auth/logout", {
+        method: "POST",
+        credentials: "include"
+      })
+    } catch (error) {
+      console.error("Logout error:", error)
+    } finally {
+      setUser(null)
+    }
   }
 
   const hasPermission = (permission: string): boolean => {
@@ -154,7 +128,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }
 
   return (
-    <AuthContext.Provider value={{ user, isLoading, login, register, logout, hasPermission }}>
+    <AuthContext.Provider value={{ user, isLoading, login, register, logout, hasPermission, refreshSession }}>
       {children}
     </AuthContext.Provider>
   )
