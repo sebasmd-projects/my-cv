@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { ArrowDown, Mail } from "lucide-react"
+import { Mail } from "lucide-react"
 import Link from "next/link"
 import { useI18n } from "@/lib/i18n/context"
 import { profileService, type Profile, type Stats } from "@/lib/api/profile-service"
@@ -21,15 +21,15 @@ function AnimatedRole() {
   }, [])
 
   return (
-    <span className="inline-block relative h-[1.2em] overflow-hidden">
+    <span className="inline-flex items-center justify-center min-w-[140px] sm:min-w-[180px]">
       <AnimatePresence mode="wait">
         <motion.span
           key={roles[currentIndex]}
-          initial={{ y: 40, opacity: 0 }}
+          initial={{ y: 30, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          exit={{ y: -40, opacity: 0 }}
-          transition={{ duration: 0.4, ease: "easeInOut" }}
-          className="inline-block text-primary"
+          exit={{ y: -30, opacity: 0 }}
+          transition={{ duration: 0.35, ease: "easeInOut" }}
+          className="text-primary"
         >
           {roles[currentIndex]}
         </motion.span>
@@ -186,25 +186,7 @@ export function HeroSection() {
           </motion.div>
         </div>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5, delay: 1 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2"
-        >
-          <Link
-            href="#about"
-            className="flex flex-col items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
-          >
-            <span className="text-sm">{t("hero.scroll")}</span>
-            <motion.div
-              animate={{ y: [0, 8, 0] }}
-              transition={{ duration: 1.5, repeat: Infinity }}
-            >
-              <ArrowDown className="w-5 h-5" />
-            </motion.div>
-          </Link>
-        </motion.div>
+        
       </div>
     </section>
   )
