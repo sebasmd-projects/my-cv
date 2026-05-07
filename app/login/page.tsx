@@ -265,7 +265,7 @@ export default function LoginPage() {
                   className="p-3 bg-destructive/10 border border-destructive/30 rounded-lg"
                 >
                   <p className="text-sm text-destructive flex items-center gap-2">
-                    <AlertCircle className="w-4 h-4 flex-shrink-0" />
+                    <AlertCircle className="w-4 h-4 shrink-0" />
                     {error}
                   </p>
                 </motion.div>
