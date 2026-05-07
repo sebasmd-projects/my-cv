@@ -1,22 +1,15 @@
 import { NextRequest, NextResponse } from "next/server"
 import { cookies } from "next/headers"
-import * as jose from "jose"
-
-const { SignJWT } = jose
+import { signJWT } from "@/lib/auth/jwt"
 
 // In production, this would be a database
 const registeredUsers: Array<{
   id: string
   email: string
-  passwordHash: string
   password: string
   name: string
   role: string
 }> = []
-
-const JWT_SECRET = new TextEncoder().encode(
-  process.env.JWT_SECRET || "portfolio-secret-key-change-in-production-32chars"
-)
 
 const COOKIE_NAME = "portfolio-auth-token"
 
@@ -87,33 +80,23 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // In production: hash password with bcrypt
-    // const passwordHash = await bcrypt.hash(password, 12)
-    const passwordHash = `hashed_${password}`
-
     // Create user
     const newUser = {
       id: `user_${Date.now()}`,
       email: email.toLowerCase(),
-      passwordHash,
-      password, // Remove in production
+      password,
       name: name.trim(),
-      role: "viewer" // New users are viewers by default
+      role: "viewer"
     }
 
     registeredUsers.push(newUser)
 
-    // Create JWT token
-    const token = await new SignJWT({
-      id: newUser.id,
+    const token = await signJWT({
+      sub: newUser.id,
       email: newUser.email,
       name: newUser.name,
-      role: newUser.role
+      role: newUser.role,
     })
-      .setProtectedHeader({ alg: "HS256" })
-      .setIssuedAt()
-      .setExpirationTime("24h")
-      .sign(JWT_SECRET)
 
     // Set HTTP-only cookie
     const cookieStore = await cookies()
