@@ -305,19 +305,23 @@
       "id": "1",
       "name": "Machine Learning",
       "issuer": "UDEMY",
-      "date": "2018"
+      "date": "2018",
+      "courseUrl": "https://www.udemy.com/course/machinelearning/",
+      "certificateUrl": "https://www.udemy.com/certificate/UC-123456/"
     },
     {
       "id": "2",
       "name": "Java Development",
       "issuer": "UDEMY",
-      "date": "2017"
+      "date": "2017",
+      "courseUrl": "https://www.udemy.com/course/java-programming/"
     },
     {
       "id": "3",
       "name": "Python Programming",
       "issuer": "UDEMY",
-      "date": "2017"
+      "date": "2017",
+      "certificateUrl": "https://www.udemy.com/certificate/UC-789012/"
     }
   ],
   "languages": [

@@ -37,7 +37,7 @@ const translations: Record<Locale, Record<string, string>> = {
     "about.title": "Sobre Mi",
     "about.subtitle": "Conoceme",
     "about.education": "Educacion",
-    "about.certifications": "Certificaciones",
+    "about.certifications": "Certificaciones y Cursos",
     "about.languages": "Idiomas",
     "about.inProgress": "En Curso",
     
@@ -123,7 +123,7 @@ const translations: Record<Locale, Record<string, string>> = {
     "about.title": "About Me",
     "about.subtitle": "Get to Know Me",
     "about.education": "Education",
-    "about.certifications": "Certifications",
+    "about.certifications": "Certifications & Courses",
     "about.languages": "Languages",
     "about.inProgress": "In Progress",
     

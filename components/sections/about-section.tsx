@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from "react"
 import { motion } from "framer-motion"
-import { MapPin, Mail, Globe, GraduationCap, Award, ChevronDown, ChevronUp, Loader2 } from "lucide-react"
+import { MapPin, Mail, Globe, GraduationCap, Award, ChevronDown, ChevronUp, Loader2, ExternalLink, BookOpen } from "lucide-react"
 import { useI18n } from "@/lib/i18n/context"
 import { profileService, type Profile, type Education, type Certification, type Language } from "@/lib/api/profile-service"
 
@@ -102,19 +102,17 @@ export function AboutSection() {
               </div>
             </motion.div>
 
-            {/* Right Column - Education & Certifications with Scroll */}
+            {/* Right Column - Education with Scroll */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="space-y-6"
             >
-              {/* Education Card with Scroll */}
               <ScrollableCard
                 title={t("about.education")}
                 icon={<GraduationCap className="w-5 h-5 text-primary" />}
-                maxHeight="250px"
+                maxHeight="350px"
               >
                 <div className="space-y-4">
                   {education.map((edu) => (
@@ -128,39 +126,77 @@ export function AboutSection() {
                           {edu.status[locale] || edu.status.es}
                         </span>
                         <span className="text-xs text-muted-foreground">
-                          {edu.startYear} - {edu.endYear || (locale === "es" ? "Presente" : "Present")}
+                          {edu.startDate?.split("-")[0] || ""} - {locale === "es" ? "Presente" : "Present"}
                         </span>
                       </div>
                     </div>
                   ))}
                 </div>
               </ScrollableCard>
-
-              {/* Certifications Card with Scroll */}
-              <ScrollableCard
-                title={t("about.certifications")}
-                icon={<Award className="w-5 h-5 text-primary" />}
-                maxHeight="300px"
-              >
-                <div className="space-y-3">
-                  {certifications.map((cert) => (
-                    <div key={cert.id} className="p-4 bg-secondary/50 rounded-lg hover:bg-secondary/70 transition-colors">
-                      <p className="font-medium text-foreground">{cert.name}</p>
-                      <div className="flex items-center justify-between mt-2 text-sm">
-                        <span className="text-muted-foreground">{cert.issuer}</span>
-                        <span className="text-primary text-xs">{cert.date}</span>
-                      </div>
-                      {cert.credentialId && (
-                        <p className="text-xs text-muted-foreground mt-1 font-mono">
-                          ID: {cert.credentialId}
-                        </p>
-                      )}
-                    </div>
-                  ))}
-                </div>
-              </ScrollableCard>
             </motion.div>
           </div>
+
+          {/* Certifications - Full Width Grid */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="mt-12"
+          >
+            <div className="p-6 bg-card rounded-xl border border-border">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="p-2 bg-primary/10 rounded-lg">
+                  <Award className="w-5 h-5 text-primary" />
+                </div>
+                <h4 className="font-semibold text-foreground">{t("about.certifications")}</h4>
+              </div>
+
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                {certifications.map((cert) => (
+                  <div 
+                    key={cert.id} 
+                    className="p-4 bg-secondary/50 rounded-lg hover:bg-secondary/70 transition-colors"
+                  >
+                    <p className="font-medium text-foreground text-sm mb-1">{cert.name}</p>
+                    <div className="flex items-center justify-between text-xs">
+                      <span className="text-muted-foreground">{cert.issuer}</span>
+                      <span className="text-primary">{cert.date}</span>
+                    </div>
+                    
+                    {(cert.courseUrl || cert.certificateUrl) && (
+                      <div className="flex gap-2 mt-3 pt-2 border-t border-border/50">
+                        {cert.courseUrl && (
+                          <a
+                            href={cert.courseUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-1 text-xs text-muted-foreground hover:text-primary transition-colors"
+                            title={locale === "es" ? "Ver Curso" : "View Course"}
+                          >
+                            <BookOpen className="w-3 h-3" />
+                            <span>{locale === "es" ? "Curso" : "Course"}</span>
+                          </a>
+                        )}
+                        {cert.certificateUrl && (
+                          <a
+                            href={cert.certificateUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-1 text-xs text-muted-foreground hover:text-primary transition-colors"
+                            title={locale === "es" ? "Ver Certificado" : "View Certificate"}
+                          >
+                            <ExternalLink className="w-3 h-3" />
+                            <span>{locale === "es" ? "Certificado" : "Certificate"}</span>
+                          </a>
+                        )}
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </motion.div>
         </div>
       </div>
     </section>
@@ -195,7 +231,6 @@ function ScrollableCard({
     checkScroll()
     const container = scrollRef.current
     if (container) {
-      // Check if content overflows
       setCanScrollDown(container.scrollHeight > container.clientHeight)
     }
   }, [children])
@@ -211,7 +246,7 @@ function ScrollableCard({
   }
 
   return (
-    <div className="p-6 bg-card rounded-xl border border-border relative">
+    <div className="p-6 bg-card rounded-xl border border-border relative h-full">
       <div className="flex items-center gap-3 mb-4">
         <div className="p-2 bg-primary/10 rounded-lg">
           {icon}
@@ -220,7 +255,6 @@ function ScrollableCard({
       </div>
 
       <div className="relative">
-        {/* Scroll Up Indicator */}
         <button
           onClick={() => scrollTo("up")}
           className={`absolute -top-2 left-1/2 -translate-x-1/2 z-10 p-1 rounded-full bg-secondary border border-border shadow-sm transition-all duration-300 ${
@@ -231,7 +265,6 @@ function ScrollableCard({
           <ChevronUp className="w-4 h-4 text-foreground" />
         </button>
 
-        {/* Scrollable Content */}
         <div
           ref={scrollRef}
           onScroll={checkScroll}
@@ -245,7 +278,6 @@ function ScrollableCard({
           {children}
         </div>
 
-        {/* Scroll Down Indicator */}
         <button
           onClick={() => scrollTo("down")}
           className={`absolute -bottom-2 left-1/2 -translate-x-1/2 z-10 p-1 rounded-full bg-secondary border border-border shadow-sm transition-all duration-300 ${
@@ -256,7 +288,6 @@ function ScrollableCard({
           <ChevronDown className="w-4 h-4 text-foreground" />
         </button>
 
-        {/* Gradient overlays */}
         <div
           className={`absolute top-0 left-0 right-2 h-6 bg-gradient-to-b from-card to-transparent pointer-events-none transition-opacity duration-300 ${
             canScrollUp ? "opacity-100" : "opacity-0"

@@ -58,6 +58,8 @@ export interface Certification {
   name: string
   issuer: string
   date: string
+  courseUrl?: string
+  certificateUrl?: string
 }
 
 export interface Language {
