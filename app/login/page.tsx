@@ -306,7 +306,7 @@ export default function LoginPage() {
                     <code className="text-xs bg-secondary px-2 py-0.5 rounded">editor@portfolio.dev</code>
                   </div>
                   <p className="text-xs text-center mt-2 text-muted-foreground">
-                    Contraseña: <code className="bg-secondary px-1 rounded">admin123</code> o <code className="bg-secondary px-1 rounded">editor123</code>
+                    Contraseña: <code className="bg-secondary px-1 rounded">Admin123!</code> o <code className="bg-secondary px-1 rounded">Editor123!</code>
                   </p>
                 </div>
               </div>

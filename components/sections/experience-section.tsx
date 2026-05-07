@@ -1,8 +1,8 @@
 "use client"
 
-import { useState, useEffect, useRef } from "react"
-import { motion } from "framer-motion"
-import { Building2, Calendar, ChevronRight, ChevronDown, ChevronUp } from "lucide-react"
+import { useRef, useState, useEffect } from "react"
+import { motion, useScroll, useTransform, useMotionValueEvent } from "framer-motion"
+import { Building2, Calendar, ChevronRight, ChevronDown } from "lucide-react"
 import { useI18n } from "@/lib/i18n/context"
 import { profileService, type Experience } from "@/lib/api/profile-service"
 
@@ -17,11 +17,11 @@ function formatDate(dateString: string, locale: "es" | "en"): string {
 export function ExperienceSection() {
   const { t, locale } = useI18n()
   const [experiences, setExperiences] = useState<Experience[]>([])
-  const scrollContainerRef = useRef<HTMLDivElement>(null)
-  const [canScrollUp, setCanScrollUp] = useState(false)
-  const [canScrollDown, setCanScrollDown] = useState(true)
+  const containerRef = useRef<HTMLDivElement>(null)
+  const [isMounted, setIsMounted] = useState(false)
 
   useEffect(() => {
+    setIsMounted(true)
     const loadData = async () => {
       const data = await profileService.getExperiences()
       setExperiences(data)
@@ -29,107 +29,61 @@ export function ExperienceSection() {
     loadData()
   }, [])
 
-  const handleScroll = () => {
-    if (scrollContainerRef.current) {
-      const { scrollTop, scrollHeight, clientHeight } = scrollContainerRef.current
-      setCanScrollUp(scrollTop > 10)
-      setCanScrollDown(scrollTop < scrollHeight - clientHeight - 10)
-    }
+  if (experiences.length === 0 || !isMounted) {
+    return (
+      <section id="experience" className="min-h-screen bg-background">
+        <div className="container mx-auto px-4 py-20">
+          <div className="animate-pulse space-y-4">
+            <div className="h-8 bg-secondary rounded w-48 mx-auto" />
+            <div className="h-64 bg-secondary rounded" />
+          </div>
+        </div>
+      </section>
+    )
   }
 
-  const scrollToDirection = (direction: "up" | "down") => {
-    if (scrollContainerRef.current) {
-      const scrollAmount = 400
-      scrollContainerRef.current.scrollBy({
-        top: direction === "down" ? scrollAmount : -scrollAmount,
-        behavior: "smooth"
-      })
-    }
-  }
-
-  if (experiences.length === 0) {
-    return null
-  }
+  // Calculate total height: 100vh for each card
+  const totalHeight = experiences.length * 100
 
   return (
-    <section id="experience" className="py-20 sm:py-32 scroll-mt-20 bg-card/50">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-6xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="mb-12 text-center"
-          >
-            <h2 className="text-sm font-mono text-primary uppercase tracking-wider mb-4">
-              {t("experience.title")}
-            </h2>
-            <h3 className="text-3xl sm:text-4xl font-bold text-foreground">
-              {t("experience.subtitle")}
-            </h3>
-          </motion.div>
-
-          {/* Scrolling Container with Fixed Height */}
-          <div className="relative">
-            {/* Scroll Up Button */}
-            <button
-              onClick={() => scrollToDirection("up")}
-              disabled={!canScrollUp}
-              className={`absolute -top-4 left-1/2 -translate-x-1/2 z-10 p-2 rounded-full bg-card border border-border shadow-lg transition-all duration-300 ${
-                canScrollUp ? "opacity-100 hover:bg-secondary" : "opacity-0 pointer-events-none"
-              }`}
-              aria-label="Scroll up"
-            >
-              <ChevronUp className="w-5 h-5 text-foreground" />
-            </button>
-
-            {/* Cards Container */}
-            <div
-              ref={scrollContainerRef}
-              onScroll={handleScroll}
-              className="h-[70vh] overflow-y-auto scrollbar-thin scrollbar-track-secondary scrollbar-thumb-primary/50 hover:scrollbar-thumb-primary pr-2"
-              style={{
-                scrollbarWidth: "thin",
-                scrollbarColor: "hsl(var(--primary) / 0.5) hsl(var(--secondary))"
-              }}
-            >
-              <div className="space-y-6 py-4">
-                {experiences.map((exp, index) => (
-                  <ExperienceCard
-                    key={exp.id}
-                    experience={exp}
-                    index={index}
-                    locale={locale}
-                    t={t}
-                  />
-                ))}
-              </div>
+    <section 
+      id="experience" 
+      ref={containerRef}
+      className="relative bg-background"
+      style={{ height: `${totalHeight}vh` }}
+    >
+      {/* Sticky Container */}
+      <div className="sticky top-0 h-screen overflow-hidden">
+        {/* Title - Always visible at top */}
+        <div className="absolute top-0 left-0 right-0 z-50 pt-16 pb-8 bg-gradient-to-b from-background via-background to-transparent">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center">
+              <h2 className="text-sm font-mono text-primary uppercase tracking-wider mb-2">
+                {t("experience.title")}
+              </h2>
+              <h3 className="text-3xl sm:text-4xl font-bold text-foreground">
+                {t("experience.subtitle")}
+              </h3>
             </div>
+          </div>
+        </div>
 
-            {/* Scroll Down Button */}
-            <button
-              onClick={() => scrollToDirection("down")}
-              disabled={!canScrollDown}
-              className={`absolute -bottom-4 left-1/2 -translate-x-1/2 z-10 p-2 rounded-full bg-card border border-border shadow-lg transition-all duration-300 ${
-                canScrollDown ? "opacity-100 hover:bg-secondary" : "opacity-0 pointer-events-none"
-              }`}
-              aria-label="Scroll down"
-            >
-              <ChevronDown className="w-5 h-5 text-foreground" />
-            </button>
-
-            {/* Gradient overlays for scroll indication */}
-            <div
-              className={`absolute top-0 left-0 right-2 h-12 bg-gradient-to-b from-card/50 to-transparent pointer-events-none transition-opacity duration-300 ${
-                canScrollUp ? "opacity-100" : "opacity-0"
-              }`}
-            />
-            <div
-              className={`absolute bottom-0 left-0 right-2 h-12 bg-gradient-to-t from-card/50 to-transparent pointer-events-none transition-opacity duration-300 ${
-                canScrollDown ? "opacity-100" : "opacity-0"
-              }`}
-            />
+        {/* Stacking Cards Container */}
+        <div className="absolute inset-0 pt-36 pb-8 flex items-center justify-center">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
+            <div className="relative h-[65vh]">
+              {experiences.map((exp, index) => (
+                <StackingCard
+                  key={exp.id}
+                  experience={exp}
+                  index={index}
+                  total={experiences.length}
+                  containerRef={containerRef}
+                  locale={locale}
+                  t={t}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </div>
@@ -137,28 +91,73 @@ export function ExperienceSection() {
   )
 }
 
-function ExperienceCard({
+function StackingCard({
   experience,
   index,
+  total,
+  containerRef,
   locale,
   t
 }: {
   experience: Experience
   index: number
+  total: number
+  containerRef: React.RefObject<HTMLDivElement | null>
   locale: "es" | "en"
   t: (key: string) => string
 }) {
   const [isExpanded, setIsExpanded] = useState(false)
   const achievements = experience.achievements[locale] || experience.achievements.es
 
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"]
+  })
+
+  // Each card occupies a portion of the scroll
+  const cardStart = index / total
+  const cardEnd = (index + 1) / total
+  
+  // Y position: starts below and moves up as we scroll
+  const y = useTransform(
+    scrollYProgress,
+    [cardStart, cardEnd],
+    ["100%", "0%"]
+  )
+
+  // Opacity: fades in as it enters
+  const opacity = useTransform(
+    scrollYProgress,
+    [cardStart, cardStart + 0.05, cardEnd - 0.05, cardEnd],
+    [0, 1, 1, index === total - 1 ? 1 : 0.3]
+  )
+
+  // Scale: slight scale effect for depth
+  const scale = useTransform(
+    scrollYProgress,
+    [cardStart, cardEnd],
+    [0.95, 1]
+  )
+
+  // Z-index increases as cards stack
+  const zIndex = index + 1
+
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
+      className="absolute inset-0"
+      style={{
+        y: index === 0 ? 0 : y,
+        opacity: index === 0 ? 1 : opacity,
+        scale: index === 0 ? 1 : scale,
+        zIndex,
+      }}
     >
-      <div className="p-6 bg-card rounded-xl border border-border hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/5">
+      <div 
+        className="h-full p-6 bg-card rounded-2xl border border-border shadow-xl overflow-y-auto"
+        style={{
+          boxShadow: `0 ${4 + index * 2}px ${20 + index * 5}px rgba(0, 0, 0, 0.2)`,
+        }}
+      >
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 mb-4">
           <div className="flex items-start gap-4">
@@ -189,7 +188,7 @@ function ExperienceCard({
         </div>
 
         {/* Description */}
-        <p className="text-muted-foreground mb-4 leading-relaxed">
+        <p className="text-muted-foreground mb-4 leading-relaxed line-clamp-3">
           {experience.description[locale] || experience.description.es}
         </p>
 
@@ -208,28 +207,16 @@ function ExperienceCard({
             />
           </button>
 
-          <motion.div
-            initial={false}
-            animate={{ height: isExpanded ? "auto" : "auto" }}
-            className="overflow-hidden"
-          >
+          <div className={`overflow-hidden transition-all duration-300 ${isExpanded ? "max-h-96" : "max-h-24"}`}>
             <ul className="space-y-2">
-              {(isExpanded ? achievements : achievements.slice(0, 3)).map((achievement, i) => (
+              {achievements.map((achievement, i) => (
                 <li key={i} className="flex items-start gap-3 text-sm text-muted-foreground">
                   <ChevronRight className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
                   <span>{achievement}</span>
                 </li>
               ))}
             </ul>
-            {!isExpanded && achievements.length > 3 && (
-              <button
-                onClick={() => setIsExpanded(true)}
-                className="mt-2 text-sm text-primary hover:underline"
-              >
-                +{achievements.length - 3} {locale === "es" ? "más" : "more"}...
-              </button>
-            )}
-          </motion.div>
+          </div>
         </div>
 
         {/* Technologies */}
@@ -247,6 +234,13 @@ function ExperienceCard({
               </span>
             ))}
           </div>
+        </div>
+
+        {/* Card indicator */}
+        <div className="absolute bottom-4 right-4 flex items-center gap-2">
+          <span className="text-xs text-muted-foreground font-mono">
+            {String(index + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
+          </span>
         </div>
       </div>
     </motion.div>
