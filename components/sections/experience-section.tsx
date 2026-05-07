@@ -1,7 +1,7 @@
 "use client"
 
 import { useRef, useState, useEffect } from "react"
-import { motion, useScroll, useTransform } from "framer-motion"
+import { motion } from "framer-motion"
 import { Building2, Calendar, ChevronRight, ChevronLeft } from "lucide-react"
 import { useI18n } from "@/lib/i18n/context"
 import { profileService, type Experience } from "@/lib/api/profile-service"
@@ -18,7 +18,6 @@ export function ExperienceSection() {
   const { t, locale } = useI18n()
   const [experiences, setExperiences] = useState<Experience[]>([])
   const [activeIndex, setActiveIndex] = useState(0)
-  const containerRef = useRef<HTMLDivElement>(null)
   const cardsRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -28,11 +27,6 @@ export function ExperienceSection() {
     }
     loadData()
   }, [])
-
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"]
-  })
 
   const scrollToCard = (index: number) => {
     if (cardsRef.current) {
