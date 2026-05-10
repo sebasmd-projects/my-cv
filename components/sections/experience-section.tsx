@@ -69,7 +69,7 @@ export function ExperienceSection() {
 
         {/* Stacking Cards Container */}
         <div className="absolute inset-0 pt-28 sm:pt-32 pb-4 flex items-start justify-center">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl h-full">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl h-full pt-[33px]">
             <div className="relative h-full">
               {experiences.map((exp, index) => (
                 <StackingCard
