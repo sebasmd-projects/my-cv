@@ -10,8 +10,8 @@ Enfocado en construir soluciones escalables, confiables y alineadas con objetivo
   email: "contacto@portfolio.dev",
   phone: "+57 300 123 4567",
   location: "Colombia",
-  linkedinUrl: "https://linkedin.com/in/qadev",
-  githubUrl: "https://github.com/qadev",
+  linkedinUrl: "https://www.linkedin.com/in/sebasti%C3%A1n-morales-delgado-33902b1a1/",
+  githubUrl: "https://github.com/sebasmd-projects",
   
   experiences: [
     {
