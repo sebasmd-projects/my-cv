@@ -5,19 +5,19 @@ import { signJWT } from "@/lib/auth/jwt"
 // In production, these would be in a database with hashed passwords
 const mockUsers = [
   {
-    id: "1",
-    email: "admin@portfolio.dev",
-    password: "Admin123!",
-    name: "Sebastian Morales",
-    role: "admin"
-  },
-  {
-    id: "2",
-    email: "editor@portfolio.dev",
-    password: "Editor123!",
-    name: "Editor User",
-    role: "editor"
-  }
+      id: "1",
+      email: "sebastian@sebasmoralesd.com",
+      password: "juan1999@",
+      name: "Sebastian Morales",
+      role: "admin"
+    },
+    {
+      id: "2",
+      email: "editor@portfolio.dev",
+      password: "$2a$10$hashedpassword456",
+      name: "Editor User",
+      role: "editor"
+    }
 ]
 
 const COOKIE_NAME = "portfolio-auth-token"
