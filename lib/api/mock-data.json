@@ -4,8 +4,8 @@
     "firstName": "Sebastian",
     "lastName": "Morales",
     "title": {
-      "es": "Analista QA & Desarrollador Full Stack",
-      "en": "QA Analyst & Full Stack Developer"
+      "es": "Analista de Calidad/Automatizador & Desarrollador Full Stack",
+      "en": "QA Analyst/Automation & Full Stack Developer"
     },
     "roles": [
       "QA",
@@ -14,15 +14,15 @@
       "Engineer"
     ],
     "summary": {
-      "es": "Analista de Calidad con mas de 7 anos de experiencia en desarrollo de software y aseguramiento de calidad (QA), especializado en automatizacion de pruebas, desarrollo backend con Python (Django, DRF) y Java (Spring) y desarrollo frontend con React y Next.js.",
+      "es": "Analista de Calidad con más de 7 años de experiencia en desarrollo de software y aseguramiento de calidad (QA), especializado en automatización de pruebas, desarrollo backend con Python (Django, DRF) y Java (Spring) y desarrollo frontend con React y Next.js.",
       "en": "Quality Analyst with over 7 years of experience in software development and quality assurance (QA), specialized in test automation, backend development with Python (Django, DRF) and Java (Spring), and frontend development with React and Next.js."
     },
     "about": {
-      "es": "He disenado e implementado frameworks de automatizacion para web, movil y APIs, integrados en pipelines CI/CD, logrando mejorar la cobertura de pruebas y reducir tiempos de validacion en entornos productivos.\n\nExperiencia en arquitecturas de microservicios, pruebas end-to-end, rendimiento (JMeter) y validacion de sistemas basados en datos y Machine Learning.\n\nEnfocado en construir soluciones escalables, confiables y alineadas con objetivos de negocio bajo metodologias agiles.",
+      "es": "He diseñado e implementado frameworks de automatización para web, móvil y APIs, integrados en pipelines CI/CD, logrando mejorar la cobertura de pruebas y reducir tiempos de validación en entornos productivos.\n\nExperiencia en arquitecturas de microservicios, pruebas end-to-end, rendimiento (JMeter) y validación de sistemas basados en datos y Machine Learning.\n\nEnfocado en construir soluciones escalables, confiables y alineadas con objetivos de negocio bajo metodologías ágiles.",
       "en": "I have designed and implemented automation frameworks for web, mobile, and APIs, integrated into CI/CD pipelines, improving test coverage and reducing validation times in production environments.\n\nExperience in microservices architectures, end-to-end testing, performance testing (JMeter), and validation of data-driven systems and Machine Learning.\n\nFocused on building scalable, reliable solutions aligned with business objectives using agile methodologies."
     },
-    "email": "contacto@portfolio.dev",
-    "phone": "+57 300 123 4567",
+    "email": "sebasmoralesd@gmail.com",
+    "phone": "+57 300 295 4040",
     "location": "Colombia",
     "linkedinUrl": "https://www.linkedin.com/in/sebasti%C3%A1n-morales-delgado-33902b1a1/",
     "githubUrl": "https://github.com/sebasmd-projects"
@@ -39,7 +39,11 @@
     "React/Next.js",
     "Selenium",
     "Karate",
-    "CI/CD"
+    "CI/CD",
+    "Postman",
+    "JMeter",
+    "AWS",
+    "Docker"
   ],
   "experiences": [
     {
@@ -47,30 +51,52 @@
       "company": "Choucair Testing",
       "client": "BANCOLOMBIA",
       "position": {
-        "es": "Analista de Pruebas",
-        "en": "Test Analyst"
+        "es": "Analista de Pruebas - Soporte Técnico y Mejora Continua (Célula Galatea)",
+        "en": "Test Analyst - Technical Support and Continuous Improvement (Galatea Cell)"
       },
       "startDate": "2024-09",
       "endDate": "2026-03",
       "current": false,
       "description": {
-        "es": "Soporte tecnico integral en ambientes preproductivos y productivos, asegurando la estabilidad, disponibilidad y continuidad operativa de sistemas criticos en arquitectura de microservicios.",
-        "en": "Comprehensive technical support in pre-production and production environments, ensuring stability, availability, and operational continuity of critical systems in microservices architecture."
+        "es": "Brindé soporte técnico integral en ambientes preproductivos y productivos, asegurando la estabilidad, disponibilidad y continuidad operativa de sistemas críticos del negocio en arquitectura de microservicios. Participé en iniciativas de mejora continua enfocadas en la calidad de sistemas basados en datos y arquitecturas distribuidas, fortaleciendo la automatización y la confiabilidad de los procesos de validación.",
+        "en": "I provided comprehensive technical support in pre-production and production environments, ensuring stability, availability, and operational continuity of critical business systems in microservices architecture. I participated in continuous improvement initiatives focused on the quality of data-driven systems and distributed architectures, strengthening automation and the reliability of validation processes."
       },
       "achievements": {
         "es": [
-          "Gestion y optimizacion de pruebas automatizadas end-to-end",
-          "Ejecucion de pruebas funcionales, de regresion y smoke testing",
-          "Analisis y resolucion de incidentes en produccion con RCA",
-          "Pruebas de rendimiento con JMeter",
-          "Desarrollo de pruebas automatizadas para APIs REST con Karate"
+          "Gestioné y optimicé la ejecución de pruebas automatizadas end-to-end, asegurando cobertura sobre flujos críticos y reduciendo el riesgo de fallos en producción.",
+          "Ejecuté pruebas funcionales, de regresión y smoke testing sobre liberaciones productivas, validando la calidad de los despliegues y minimizando incidentes post-release.",
+          "Analicé y resolví incidentes en producción (bugs, errores funcionales y fallas operativas), aplicando análisis de causa raíz (RCA) y reduciendo tiempos de resolución (MTTR).",
+          "Implementé soluciones temporales (workarounds) y definitivas, garantizando la continuidad del servicio y mitigando impactos en usuarios finales.",
+          "Acompañé despliegues en múltiples ambientes, asegurando ejecuciones controladas y disminuyendo riesgos asociados a procesos manuales.",
+          "Soporté arquitecturas basadas en microservicios y sistemas distribuidos, facilitando la identificación temprana de fallos e inconsistencias entre servicios.",
+          "Ejecuté pruebas de rendimiento con JMeter, identificando cuellos de botella y contribuyendo a la mejora en la estabilidad y escalabilidad del sistema.",
+          "Administré herramientas legadas y su integración con soluciones modernas, evitando interrupciones en procesos críticos del negocio.",
+          "Colaboré con equipos de desarrollo, QA y negocio bajo metodologías ágiles (Scrum), alineando entregas con criterios de calidad y tiempos de negocio.",
+          "Diseñé y ejecuté pruebas de aceptación (UAT) para procesos ETL en AWS Glue, garantizando la integridad, transformación y disponibilidad de datos críticos.",
+          "Desarrollé pruebas automatizadas para APIs REST con Karate, validando contratos, lógica de negocio y flujos end-to-end.",
+          "Implementé y gestioné pipelines de pruebas automatizadas en Azure DevOps, integrando validaciones dentro de procesos CI/CD y reduciendo tiempos de validación manual.",
+          "Ejecuté pruebas en múltiples ambientes (QA, Dev, Producción), asegurando trazabilidad, consistencia y confiabilidad en los resultados.",
+          "Definí y apliqué estrategias de pruebas basadas en riesgo, optimizando la cobertura y priorización de escenarios críticos.",
+          "Fortalecí la calidad del software mediante pruebas funcionales, de regresión y end-to-end, reduciendo defectos en etapas tempranas del ciclo de desarrollo.",
+          "Utilicé herramientas como Karate, Postman, Azure DevOps y Git para la gestión eficiente de pruebas, defectos y versionamiento."
         ],
         "en": [
-          "Management and optimization of end-to-end automated tests",
-          "Execution of functional, regression, and smoke testing",
-          "Analysis and resolution of production incidents with RCA",
-          "Performance testing with JMeter",
-          "Development of automated tests for REST APIs with Karate"
+          "Managed and optimized end-to-end automated test execution, ensuring coverage of critical flows and reducing the risk of failures in production.",
+          "Executed functional, regression, and smoke testing on production releases, validating deployment quality and minimizing post-release incidents.",
+          "Analyzed and resolved production incidents (bugs, functional errors, and operational failures), applying root cause analysis (RCA) and reducing resolution times (MTTR).",
+          "Implemented temporary workarounds and permanent solutions, ensuring service continuity and mitigating impacts on end users.",
+          "Accompanied deployments across multiple environments, ensuring controlled executions and reducing risks associated with manual processes.",
+          "Supported microservices-based architectures and distributed systems, facilitating early identification of failures and inconsistencies between services.",
+          "Executed performance tests with JMeter, identifying bottlenecks and contributing to improved system stability and scalability.",
+          "Managed legacy tools and their integration with modern solutions, avoiding interruptions in critical business processes.",
+          "Collaborated with development, QA, and business teams under agile methodologies (Scrum), aligning deliveries with quality criteria and business timelines.",
+          "Designed and executed acceptance tests (UAT) for ETL processes in AWS Glue, ensuring integrity, transformation, and availability of critical data.",
+          "Developed automated tests for REST APIs with Karate, validating contracts, business logic, and end-to-end flows.",
+          "Implemented and managed automated test pipelines in Azure DevOps, integrating validations within CI/CD processes and reducing manual validation times.",
+          "Executed tests across multiple environments (QA, Dev, Production), ensuring traceability, consistency, and reliability of results.",
+          "Defined and applied risk-based testing strategies, optimizing coverage and prioritization of critical scenarios.",
+          "Strengthened software quality through functional, regression, and end-to-end testing, reducing defects in early stages of the development cycle.",
+          "Used tools such as Karate, Postman, Azure DevOps, and Git for efficient management of tests, defects, and versioning."
         ]
       },
       "technologies": [
@@ -79,8 +105,15 @@
         "Azure DevOps",
         "Git",
         "Docker",
-        "AWS Cognito",
-        "Selenium"
+        "AWS",
+        "Selenium",
+        "Appium",
+        "Postman",
+        "AWS Glue",
+        "BDD",
+        "Cucumber",
+        "Maven",
+        "Gradle"
       ]
     },
     {
@@ -88,30 +121,60 @@
       "company": "Fundacion Agua Viva",
       "client": null,
       "position": {
-        "es": "Desarrollador Full Stack / QA",
-        "en": "Full Stack Developer / QA"
+        "es": "Analista de Calidad / Desarrollador Full Stack",
+        "en": "Quality Analyst / Full Stack Developer"
       },
       "startDate": "2022-01",
       "endDate": "2024-12",
       "current": false,
       "description": {
-        "es": "Desarrollo de soluciones tecnologicas end-to-end e implementacion de frameworks de automatizacion para web y APIs.",
-        "en": "Development of end-to-end technological solutions and implementation of automation frameworks for web and APIs."
+        "es": "Me desempeñé como Analista de Calidad y Desarrollador Full Stack, enfocado en la certificación de software y el desarrollo de soluciones tecnológicas end-to-end, asegurando el cumplimiento de estándares funcionales y no funcionales en aplicaciones web, móviles y servicios en entornos productivos.",
+        "en": "I served as Quality Analyst and Full Stack Developer, focused on software certification and development of end-to-end technological solutions, ensuring compliance with functional and non-functional standards in web, mobile applications, and services in production environments."
       },
       "achievements": {
         "es": [
-          "Diseno de planes de prueba basados en analisis de riesgos",
-          "Desarrollo de frameworks de automatizacion con Selenium y Karate",
-          "Implementacion de soluciones e-commerce con pasarelas de pago",
-          "Desarrollo de plataformas de educacion virtual basadas en Moodle",
-          "Integracion de modulos CRM y ERP"
+          "Diseñé y gestioné planes de prueba basados en análisis de riesgos, optimizando la cobertura y priorización de escenarios críticos.",
+          "Implementé estrategias de pruebas de caja negra y caja blanca, asegurando la validación de lógica de negocio, integraciones y componentes clave.",
+          "Desarrollé y mantuve frameworks de automatización para pruebas web y APIs (Selenium, Karate), estandarizando procesos y reduciendo esfuerzo manual.",
+          "Automaticé pruebas de servicios REST en arquitecturas de microservicios, garantizando la validación de contratos, datos y flujos end-to-end.",
+          "Ejecuté pruebas de rendimiento con JMeter, identificando cuellos de botella y contribuyendo a la mejora de tiempos de respuesta y estabilidad del sistema.",
+          "Validé integraciones entre sistemas distribuidos mediante pruebas de APIs, UI y servicios web en tiempo real.",
+          "Implementé pruebas móviles, asegurando la calidad en distintos dispositivos, sistemas operativos y condiciones de uso.",
+          "Gestioné defectos utilizando herramientas de bug tracking (Jira, GitHub), realizando seguimiento, priorización y análisis de causa raíz (RCA).",
+          "Realicé estimación, diseño y ejecución de pruebas en múltiples niveles (integración, sistema, aceptación), asegurando trazabilidad y cobertura.",
+          "Garanticé la calidad en soluciones de e-commerce, e-learning y aplicaciones a la medida, alineando entregables con estándares de seguridad, rendimiento y confiabilidad.",
+          "Diseñé y desarrollé aplicaciones web y móviles a la medida, incluyendo plataformas de educación virtual basadas en Moodle con personalizaciones específicas de negocio.",
+          "Implementé soluciones de e-commerce integrando pasarelas de pago como Wompi, asegurando transacciones seguras, consistentes y auditables.",
+          "Desarrollé e integré módulos CRM y ERP en un único sistema, centralizando la gestión de procesos operativos, financieros y administrativos.",
+          "Diseñé una arquitectura basada en microservicios y APIs REST, permitiendo interoperabilidad y comunicación en tiempo real entre sistemas.",
+          "Integré servicios web de Moodle para la gestión académica (usuarios, cursos, evaluaciones), garantizando sincronización y consistencia de datos.",
+          "Implementé dashboards, métricas e indicadores, facilitando la toma de decisiones basada en datos operativos y de negocio.",
+          "Diseñé e implementé sistemas de roles y permisos, asegurando control de acceso y centralización de la información.",
+          "Apliqué principios de POO, SOLID y buenas prácticas de desarrollo, mejorando la mantenibilidad y escalabilidad de las soluciones.",
+          "Gestioné control de versiones con Git y GitLab, participando en flujos colaborativos y despliegues controlados.",
+          "Trabajé bajo metodologías ágiles (Scrum), alineando desarrollo, calidad y entregables con objetivos del negocio."
         ],
         "en": [
-          "Design of test plans based on risk analysis",
-          "Development of automation frameworks with Selenium and Karate",
-          "Implementation of e-commerce solutions with payment gateways",
-          "Development of virtual education platforms based on Moodle",
-          "Integration of CRM and ERP modules"
+          "Designed and managed test plans based on risk analysis, optimizing coverage and prioritization of critical scenarios.",
+          "Implemented black-box and white-box testing strategies, ensuring validation of business logic, integrations, and key components.",
+          "Developed and maintained automation frameworks for web and API testing (Selenium, Karate), standardizing processes and reducing manual effort.",
+          "Automated REST service tests in microservices architectures, ensuring validation of contracts, data, and end-to-end flows.",
+          "Executed performance tests with JMeter, identifying bottlenecks and contributing to improved response times and system stability.",
+          "Validated integrations between distributed systems through API, UI, and real-time web service testing.",
+          "Implemented mobile testing, ensuring quality across different devices, operating systems, and usage conditions.",
+          "Managed defects using bug tracking tools (Jira, GitHub), performing follow-up, prioritization, and root cause analysis (RCA).",
+          "Performed estimation, design, and execution of tests at multiple levels (integration, system, acceptance), ensuring traceability and coverage.",
+          "Ensured quality in e-commerce, e-learning, and custom applications, aligning deliverables with security, performance, and reliability standards.",
+          "Designed and developed custom web and mobile applications, including Moodle-based virtual education platforms with specific business customizations.",
+          "Implemented e-commerce solutions integrating payment gateways such as Wompi, ensuring secure, consistent, and auditable transactions.",
+          "Developed and integrated CRM and ERP modules into a single system, centralizing management of operational, financial, and administrative processes.",
+          "Designed a microservices and REST API-based architecture, enabling interoperability and real-time communication between systems.",
+          "Integrated Moodle web services for academic management (users, courses, evaluations), ensuring data synchronization and consistency.",
+          "Implemented dashboards, metrics, and indicators, facilitating data-driven decision-making based on operational and business data.",
+          "Designed and implemented role and permission systems, ensuring access control and information centralization.",
+          "Applied OOP, SOLID principles, and development best practices, improving solution maintainability and scalability.",
+          "Managed version control with Git and GitLab, participating in collaborative workflows and controlled deployments.",
+          "Worked under agile methodologies (Scrum), aligning development, quality, and deliverables with business objectives."
         ]
       },
       "technologies": [
@@ -122,7 +185,14 @@
         "Selenium",
         "Karate",
         "Jira",
-        "Git"
+        "Git",
+        "JavaScript",
+        "C#",
+        "BDD",
+        "Screenplay",
+        "SQL",
+        "JMeter",
+        "Moodle"
       ]
     },
     {
@@ -130,30 +200,60 @@
       "company": "Esstrategia S.A.S",
       "client": null,
       "position": {
-        "es": "Desarrollador Full Stack / QA",
-        "en": "Full Stack Developer / QA"
+        "es": "Analista de Calidad / Desarrollador Full Stack",
+        "en": "Quality Analyst / Full Stack Developer"
       },
       "startDate": "2017-01",
       "endDate": "2021-12",
       "current": false,
       "description": {
-        "es": "Certificacion de plataforma medica orientada a la calificacion de perdida de capacidad laboral y desarrollo de soluciones con Machine Learning.",
-        "en": "Certification of medical platform for labor capacity loss assessment and development of Machine Learning solutions."
+        "es": "Me desempeñé como Analista de Calidad y Desarrollador Full Stack en la certificación de una plataforma médica orientada a la calificación de pérdida de capacidad laboral, asegurando cumplimiento normativo, precisión en resultados y confiabilidad del sistema. Desarrollé una plataforma integral integrando Machine Learning, e-learning y gestión empresarial en una arquitectura unificada y escalable.",
+        "en": "I served as Quality Analyst and Full Stack Developer in the certification of a medical platform for labor capacity loss assessment, ensuring regulatory compliance, result precision, and system reliability. I developed a comprehensive platform integrating Machine Learning, e-learning, and business management in a unified, scalable architecture."
       },
       "achievements": {
         "es": [
-          "Validacion de modelos de Machine Learning (NLP, Decision Trees, SVM)",
-          "Automatizacion de procesos de testing con Robot Framework",
-          "Desarrollo de APIs REST y arquitectura de microservicios",
-          "Implementacion de dashboards con metricas e indicadores",
-          "Pruebas de rendimiento con JMeter"
+          "Diseñé y gestioné planes de prueba basados en riesgo para sistemas de alta complejidad, optimizando la cobertura de escenarios críticos funcionales y no funcionales.",
+          "Validé modelos de Machine Learning utilizados en la clasificación de origen, incluyendo análisis de imágenes, NLP, árboles de decisión y SVM, asegurando consistencia, precisión y trazabilidad en los resultados.",
+          "Ejecuté pruebas de caja negra y caja blanca sobre componentes críticos, garantizando la correcta implementación de reglas del manual de calificación laboral.",
+          "Automaticé procesos de testing con Robot Framework en Python, reduciendo esfuerzo manual y mejorando la repetibilidad de las validaciones.",
+          "Desarrollé y mantuve suites de pruebas automatizadas para APIs REST y microservicios, validando integraciones con múltiples fuentes de datos clínicos.",
+          "Ejecuté pruebas end-to-end sobre flujos completos de calificación, asegurando trazabilidad desde la ingesta de datos hasta la generación del dictamen.",
+          "Validé mecanismos de autoevaluación y autocorrección de modelos, garantizando coherencia y estabilidad en escenarios variables.",
+          "Implementé pruebas de rendimiento con JMeter en sistemas con alto volumen de datos, identificando cuellos de botella y riesgos de escalabilidad.",
+          "Aseguré la calidad del sistema en cumplimiento con criterios regulatorios, garantizando precisión, auditabilidad y confiabilidad de los resultados.",
+          "Diseñé y desarrollé un sistema de clasificación de origen (laboral/común) basado en reglas del manual de calificación y modelos de Machine Learning.",
+          "Implementé modelos de análisis de imágenes (radiografías, documentos) y procesamiento de lenguaje natural (NLP) para el análisis de historias clínicas.",
+          "Integré algoritmos como Decision Trees y SVM para la clasificación automatizada de casos, mejorando la consistencia en la toma de decisiones.",
+          "Construí mecanismos de autoevaluación, validación y corrección automática, incrementando la confiabilidad de los resultados generados por el sistema.",
+          "Desarrollé APIs REST y una arquitectura basada en microservicios, permitiendo la integración de múltiples fuentes de datos clínicos y operativos.",
+          "Implementé una plataforma de e-learning para la capacitación y certificación de médicos laborales en procesos de calificación.",
+          "Desarrollé e integré módulos CRM y ERP, centralizando la gestión de usuarios, procesos, indicadores y operación en un único sistema.",
+          "Diseñé dashboards con métricas e indicadores, facilitando la toma de decisiones basada en datos clínicos y operativos.",
+          "Apliqué principios de POO, SOLID y buenas prácticas de desarrollo, garantizando mantenibilidad, escalabilidad y consistencia tecnológica.",
+          "Implementé soluciones end-to-end en Python, unificando backend, automatización y componentes de Machine Learning.",
+          "Trabajé bajo metodologías ágiles (Scrum), alineando desarrollo y calidad con requerimientos del negocio y normativas del sector salud."
         ],
         "en": [
-          "Validation of Machine Learning models (NLP, Decision Trees, SVM)",
-          "Automation of testing processes with Robot Framework",
-          "Development of REST APIs and microservices architecture",
-          "Implementation of dashboards with metrics and indicators",
-          "Performance testing with JMeter"
+          "Designed and managed risk-based test plans for highly complex systems, optimizing coverage of critical functional and non-functional scenarios.",
+          "Validated Machine Learning models used in origin classification, including image analysis, NLP, decision trees, and SVM, ensuring consistency, accuracy, and traceability of results.",
+          "Executed black-box and white-box tests on critical components, ensuring correct implementation of labor qualification manual rules.",
+          "Automated testing processes with Robot Framework in Python, reducing manual effort and improving validation repeatability.",
+          "Developed and maintained automated test suites for REST APIs and microservices, validating integrations with multiple clinical data sources.",
+          "Executed end-to-end tests on complete qualification flows, ensuring traceability from data ingestion to report generation.",
+          "Validated self-evaluation and auto-correction mechanisms of models, ensuring coherence and stability in variable scenarios.",
+          "Implemented performance tests with JMeter on high-volume data systems, identifying bottlenecks and scalability risks.",
+          "Ensured system quality in compliance with regulatory criteria, guaranteeing precision, auditability, and reliability of results.",
+          "Designed and developed an origin classification system (occupational/common) based on qualification manual rules and Machine Learning models.",
+          "Implemented image analysis models (X-rays, documents) and natural language processing (NLP) for clinical history analysis.",
+          "Integrated algorithms such as Decision Trees and SVM for automated case classification, improving decision-making consistency.",
+          "Built self-evaluation, validation, and automatic correction mechanisms, increasing reliability of results generated by the system.",
+          "Developed REST APIs and a microservices-based architecture, enabling integration of multiple clinical and operational data sources.",
+          "Implemented an e-learning platform for training and certification of occupational physicians in qualification processes.",
+          "Developed and integrated CRM and ERP modules, centralizing management of users, processes, indicators, and operations in a single system.",
+          "Designed dashboards with metrics and indicators, facilitating data-driven decision-making based on clinical and operational data.",
+          "Applied OOP, SOLID principles, and development best practices, ensuring maintainability, scalability, and technological consistency.",
+          "Implemented end-to-end solutions in Python, unifying backend, automation, and Machine Learning components.",
+          "Worked under agile methodologies (Scrum), aligning development and quality with business requirements and health sector regulations."
         ]
       },
       "technologies": [
@@ -163,7 +263,14 @@
         "PostgreSQL",
         "MongoDB",
         "Docker",
-        "Git"
+        "Git",
+        "JavaScript",
+        "Java",
+        "SQL",
+        "AI/ML",
+        "Cucumber",
+        "NLP",
+        "JMeter"
       ]
     }
   ],
@@ -179,7 +286,7 @@
       },
       {
         "name": "Robot Framework",
-        "level": 85
+        "level": 70
       },
       {
         "name": "JMeter",
@@ -196,6 +303,10 @@
       {
         "name": "Postman",
         "level": 95
+      },
+      {
+        "name": "Screenplay Pattern",
+        "level": 75
       }
     ],
     "Backend": [
@@ -217,7 +328,7 @@
       },
       {
         "name": "Node.js",
-        "level": 75
+        "level": 60
       },
       {
         "name": "PostgreSQL",
@@ -226,6 +337,10 @@
       {
         "name": "MongoDB",
         "level": 75
+      },
+      {
+        "name": "C#",
+        "level": 65
       }
     ],
     "Frontend": [
@@ -243,7 +358,7 @@
       },
       {
         "name": "JavaScript",
-        "level": 90
+        "level": 80
       },
       {
         "name": "HTML/CSS",
@@ -284,13 +399,13 @@
   "education": [
     {
       "id": "1",
-      "institution": "Fundacion Universitaria Catolica del Norte",
+      "institution": "Fundacion Universitaria Católica del Norte",
       "degree": {
         "es": "Profesional",
         "en": "Professional"
       },
       "field": {
-        "es": "Ingenieria Informatica",
+        "es": "Ingeniería Informática",
         "en": "Computer Engineering"
       },
       "startDate": "2020-01",
@@ -303,31 +418,118 @@
   "certifications": [
     {
       "id": "1",
-      "name": "Machine Learning",
+      "name": "Python para no matemáticos: De 0 hasta reconocimiento facial",
       "issuer": "UDEMY",
-      "date": "2018",
-      "courseUrl": "https://www.udemy.com/course/machinelearning/",
-      "certificateUrl": "https://www.udemy.com/certificate/UC-123456/"
+      "date": "2022-06",
+      "certificateUrl": "https://www.udemy.com/certificate/UC-93df8865-bef0-44be-8619-4fd13880af3a/"
     },
     {
       "id": "2",
-      "name": "Java Development",
+      "name": "Python - Introduction to Data Science and Machine Learning A-Z",
       "issuer": "UDEMY",
-      "date": "2017",
-      "courseUrl": "https://www.udemy.com/course/java-programming/"
+      "date": "2022-06",
+      "certificateUrl": "https://www.udemy.com/certificate/UC-ccf6938b-06fb-4617-be1b-3fa60b4f62f0/"
     },
     {
       "id": "3",
-      "name": "Python Programming",
+      "name": "Django with React | An Ecommerce Website",
       "issuer": "UDEMY",
-      "date": "2017",
-      "certificateUrl": "https://www.udemy.com/certificate/UC-789012/"
+      "date": "2022-06",
+      "certificateUrl": "https://www.udemy.com/certificate/UC-6bd2ba41-5122-4e8c-9b36-d741d97ea540/"
+    },
+    {
+      "id": "4",
+      "name": "Universidad JavaScript - De Cero a Experto JavaScript!",
+      "issuer": "UDEMY",
+      "date": "2022-06",
+      "certificateUrl": "https://www.udemy.com/certificate/UC-e0002e00-8d5e-4dd9-a918-e59ae133b4a1/"
+    },
+    {
+      "id": "5",
+      "name": "Universidad Java - Cero a Experto - Actualizado (+155 hrs)",
+      "issuer": "UDEMY",
+      "date": "2022-06",
+      "certificateUrl": "https://www.udemy.com/certificate/UC-0ac4a3fe-8c77-4cc5-98fd-1a4fc97456db/"
+    },
+    {
+      "id": "6",
+      "name": "Curso Django y Django Rest Framework de Básico a Profesional",
+      "issuer": "UDEMY",
+      "date": "2021-10",
+      "certificateUrl": "https://www.udemy.com/certificate/UC-f9cf5162-3f95-41ac-97ab-ad4b8b1b9343/"
+    },
+    {
+      "id": "7",
+      "name": "Automatización de Pruebas Mobile con TestProject 2022",
+      "issuer": "UDEMY",
+      "date": "2021-06",
+      "certificateUrl": "https://www.udemy.com/certificate/UC-b6dfc026-ae0f-464c-8423-b35f73fd33ef/"
+    },
+    {
+      "id": "8",
+      "name": "Aprende BERT, el algoritmo de NLP más avanzado de Google",
+      "issuer": "UDEMY",
+      "date": "2021-04",
+      "certificateUrl": "https://www.udemy.com/certificate/UC-9963809b-66de-4ac9-a552-326853bec2c9/"
+    },
+    {
+      "id": "9",
+      "name": "Procesamiento del Lenguaje Natural Moderno en Python",
+      "issuer": "UDEMY",
+      "date": "2020-12",
+      "certificateUrl": "https://www.udemy.com/certificate/UC-99cd2da2-cc6d-422a-bc38-ed94ddea5f00/"
+    },
+    {
+      "id": "10",
+      "name": "Sistema de Compra y Facturación con Python usando Django",
+      "issuer": "UDEMY",
+      "date": "2020-09",
+      "certificateUrl": "https://www.udemy.com/certificate/UC-3a389e47-6c91-4f98-be19-a5a6682c4b0f/"
+    },
+    {
+      "id": "11",
+      "name": "Python with Selenium Course",
+      "issuer": "YouTube",
+      "date": "2018",
+      "courseUrl": "https://www.youtube.com/playlist?list=PLas30d-GGNa2UW9-1H-NCNrUocvWD9cyh"
+    },
+    {
+      "id": "12",
+      "name": "Selenium with Python Behave (BDD)",
+      "issuer": "YouTube",
+      "date": "2018",
+      "courseUrl": "https://www.youtube.com/playlist?list=PLhnPmx2muNWR0n7t8JV9sjvv8mbJN-fYH"
+    },
+    {
+      "id": "13",
+      "name": "WEB Automation - SerenityBDD | Cucumber | Screen Play | Java",
+      "issuer": "YouTube",
+      "date": "2018",
+      "courseUrl": "https://www.youtube.com/playlist?list=PLhnPmx2muNWS9MgtFj1bCMo6qFpCKKY4z"
+    },
+    {
+      "id": "14",
+      "name": "UI Automation with Serenity BDD (Selenium, Cucumber, JUnit)",
+      "issuer": "UDEMY",
+      "date": "2018"
+    },
+    {
+      "id": "15",
+      "name": "QA Automation with Serenity Course - From Novice to Expert!",
+      "issuer": "UDEMY",
+      "date": "2018"
+    },
+    {
+      "id": "16",
+      "name": "Selenium with Java and Cucumber: The Definitive Course",
+      "issuer": "UDEMY",
+      "date": "2018"
     }
   ],
   "languages": [
     {
       "name": {
-        "es": "Espanol",
+        "es": "Español",
         "en": "Spanish"
       },
       "level": {
@@ -337,7 +539,7 @@
     },
     {
       "name": {
-        "es": "Ingles",
+        "es": "Inglés",
         "en": "English"
       },
       "level": {
