@@ -174,7 +174,7 @@ function StackingCard({
         </div>
 
         {/* Description - 2-3 lines max */}
-        <p className="text-sm sm:text-base text-muted-foreground mb-3 leading-relaxed">
+        <p className="text-sm sm:text-base text-muted-foreground mb-3 leading-relaxed line-clamp-2 sm:line-clamp-3 flex-shrink-0">
           {experience.description[locale] || experience.description.es}
         </p>
 
